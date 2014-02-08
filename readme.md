@@ -4,12 +4,12 @@
 
 ### Scope
 
-This document provides guidelines for code formatting and documentation to 
-individuals and teams contributing to Zend Framework. Many developers using 
-Zend Framework have also found these coding standards useful because their 
-code's style remains consistent with all Zend Framework code. It is also 
-worth noting that it requires significant effort to fully specify coding 
-standards.  
+[This document](http://framework.zend.com/wiki/display/ZFDEV2/Coding+Standards) 
+provides guidelines for code formatting and documentation to individuals and 
+teams contributing to Zend Framework. Many developers using Zend Framework 
+have also found these coding standards useful because their code's style 
+remains consistent with all Zend Framework code. It is also worth noting that 
+it requires significant effort to fully specify coding standards.  
 
 **Note:** Sometimes developers consider the establishment of a standard more 
 important than what that standard actually suggests at the most detailed level 
@@ -20,10 +20,10 @@ these standards or use them as is in accordance with the terms of our
 
 Topics covered in Zend Framework's coding standards include:
 
-* PHP File Formatting
-* Naming Conventions
-* Coding Style
-* Inline Documentation
+* [PHP File Formatting](#php-file-formatting)
+* [Naming Conventions](#naming-conventions)
+* [Coding Style](#coding-style)
+* [Inline Documentation](#inline-documentation)
 
 ### Goals
 
@@ -98,7 +98,7 @@ top-level namespace within the Zend Framework distribution.
 ### Namespaces
 
 Namespaces **MUST** contain only alphanumeric characters, the underscore, and, 
-of course, the namespace separator ({{}}).  
+of course, the namespace separator (```{{}}```).  
 
 Namespaces **SHOULD** be MixedCase, and acronyms used in namespaces **SHOULD** 
 as well. As examples:  
@@ -699,29 +699,29 @@ classes within your namespace, or import the Exception namespace you will use.
 
 ```php
 namespace Zend\Foo;
- 
+
 class Bar
 {
-    public function trigger()
-    {
-        // Resolves to Zend\Foo\Exception\RuntimeException
-        throw new Exception\RuntimeException();
-    }
+    public function trigger()
+    {
+        // Resolves to Zend\Foo\Exception\RuntimeException
+        throw new Exception\RuntimeException();
+    }
 }
- 
+
 // Explicit importing:
- 
+
 namespace Zend\Foo\Bar;
- 
+
 use Zend\Foo\Exception;
- 
+
 class Baz
 {
-    public function trigger()
-    {
-        // Resolves to Zend\Foo\Exception\RuntimeException
-        throw new Exception\RuntimeException();
-    }
+    public function trigger()
+    {
+        // Resolves to Zend\Foo\Exception\RuntimeException
+        throw new Exception\RuntimeException();
+    }
 }
 ```
 
@@ -738,9 +738,9 @@ We recommend using ```sprintf()``` to format your exception messages.
 
 ```php
 throw new Exception\InvalidArgumentException(sprintf(
-    '%s expects a string argument; received "%s"',
-    __METHOD__,
-    (is_object($param) ? get_class($param) : gettype($param))
+    '%s expects a string argument; received "%s"',
+    __METHOD__,
+    (is_object($param) ? get_class($param) : gettype($param))
 ));
 ```
 
@@ -768,14 +768,14 @@ The following is an example of an acceptable function declaration in a class:
  */
 class Foo
 {
-    /**
-     * Documentation Block Here
+    /**
+     * Documentation Block Here
      */
-    public function bar()
-    {
-        // all contents of function
-        // must be indented four spaces
-    }
+    public function bar()
+    {
+        // all contents of function
+        // must be indented four spaces
+    }
 }
 ```
 
@@ -793,15 +793,15 @@ method declaration. The following is an example of one such situation:
  */
 class Foo
 {
-    /**
+    /**
      * Documentation Block Here
      */
-    public function bar($arg1, $arg2, $arg3,
-        $arg4, $arg5, $arg6
-    ) {
-        // all contents of function
-        // must be indented four spaces
-    }
+    public function bar($arg1, $arg2, $arg3,
+        $arg4, $arg5, $arg6
+    ) {
+        // all contents of function
+        // must be indented four spaces
+    }
 }
 ```
 
@@ -814,11 +814,11 @@ in a method declaration.
  */
 class Foo
 {
-    /**
+    /**
      * Documentation Block Here
      */
-    public function bar(&$baz)
-    {}
+    public function bar(&$baz)
+    {}
 }
 ```
 
@@ -834,21 +834,21 @@ return by reference.
  */
 class Foo
 {
-    /**
+    /**
      * WRONG
      */
-    public function bar()
-    {
-        return($this->bar);
-    }
- 
-    /**
+    public function bar()
+    {
+        return($this->bar);
+    }
+
+    /**
      * RIGHT
      */
-    public function bar()
-    {
-        return $this->bar;
-    }
+    public function bar()
+    {
+        return $this->bar;
+    }
 }
 ```
 
@@ -883,24 +883,24 @@ the same line in which they are defined (not the following line). Code
  */
 $foo = function($x)
 {
-    // WRONG
+    // WRONG
 };
- 
+
 $foo = function($x) {
-    // RIGHT
+    // RIGHT
 };
- 
+
 /**
  * Use statement declaration
  */
 $foo = function($x) use($y) {
-    // WRONG
+    // WRONG
 };
- 
+
 $foo = function($x) use ($y) {
-    // RIGHT
+    // RIGHT
 };
- 
+
 /**
  * Indentation
  */
@@ -908,10 +908,10 @@ $foo = array_map(function($x) {
 // WRONG
 return strtolower($x);
 }, $array);
- 
+
 $foo = array_map(function($x) {
-    // RIGHT
-    return strtolower($x);
+    // RIGHT
+    return strtolower($x);
 }, $array);
 ```
 
@@ -936,15 +936,15 @@ arrays still apply:
 
 ```php
 threeArguments(array(1, 2, 3), 2, 3);
- 
+
 threeArguments(array(1, 2, 3, 'Zend', 'Studio',
-                     $a, $b, $c,
-                     56.44, $d, 500), 2, 3);
- 
+                     $a, $b, $c,
+                     56.44, $d, 500), 2, 3);
+
 threeArguments(array(
-    1, 2, 3, 'Zend', 'Studio',
-    $a, $b, $c,
-    56.44, $d, 500
+    1, 2, 3, 'Zend', 'Studio',
+    $a, $b, $c,
+    56.44, $d, 500
 ), 2, 3);
 ```
 
@@ -967,7 +967,7 @@ braces **MUST** be indented using four spaces.
 
 ```php
 if ($a != 2) {
-    $a = 2;
+    $a = 2;
 }
 ```
 
@@ -981,10 +981,10 @@ level equivalent to the opening control statement.
 
 ```php
 if (($a == $b)
-    && ($b == $c)
-    || (Foo::CONST == $d)
+    && ($b == $c)
+    || (Foo::CONST == $d)
 ) {
-    $a = $d;
+    $a = $d;
 }
 ```
 
@@ -997,30 +997,30 @@ demonstrate proper formatting for ```if``` statements with ```else``` and/or ```
 
 ```php
 if ($a != 2) {
-    $a = 2;
+    $a = 2;
 } else {
-    $a = 7;
+    $a = 7;
 }
- 
+
 if ($a != 2) {
-    $a = 2;
+    $a = 2;
 } elseif ($a == 3) {
-    $a = 4;
+    $a = 4;
 } else {
-    $a = 7;
+    $a = 7;
 }
- 
+
 if (($a == $b)
-    && ($b == $c)
-    || (Foo::CONST == $d)
+    && ($b == $c)
+    || (Foo::CONST == $d)
 ) {
-    $a = $d;
+    $a = $d;
 } elseif (($a != $b)
-          || ($b != $c)
+        || ($b != $c)
 ) {
-    $a = $c;
+    $a = $c;
 } else {
-    $a = $b;
+    $a = $b;
 }
 ```
 
@@ -1040,14 +1040,14 @@ additional four spaces.
 
 ```php
 switch ($numPeople) {
-    case 1:
-        break;
- 
-    case 2:
-        break;
- 
-    default:
-        break;
+    case 1:
+        break;
+
+    case 2:
+        break;
+
+    default:
+        break;
 }
 ```
 
@@ -1065,29 +1065,29 @@ statement contains code that would execute. As an example:
 ```php
 // Makes no sense insert comment after case A and B
 switch ($foo) {
-   case 'a':
-   case 'b':
-   case 'c':
-       $bar = 'baz';
-       break;
+    case 'a':
+    case 'b':
+    case 'c':
+        $bar = 'baz';
+        break;
 }
- 
+
 // Here it makes sense, because it could be seen as bug
 switch ($foo) {
-   case 'a':
-       $baz = 'baz';
-       // break intentionally omitted
- 
-   case 'b':
-   case 'c':
-       $bar = 'baz';
-       break;
+    case 'a':
+        $baz = 'baz';
+        // break intentionally omitted
+
+    case 'b':
+    case 'c':
+        $bar = 'baz';
+        break;
 }
 ```
 
-### Inline Documentation
+## Inline Documentation
 
-#### Documentation Format
+### Documentation Format
 
 All documentation blocks ("docblocks") **MUST** be compatible with the 
 phpDocumentor format. Describing the phpDocumentor format is beyond the scope 
@@ -1098,7 +1098,7 @@ All class files **MUST** contain a "file-level" docblock at the top of each
 file and a "class-level" docblock immediately above each class. Examples of 
 such docblocks can be found below.  
 
-#### General Notes
+### General Notes
 
 Classes and interfaces referenced by annotations **MUST** follow the same 
 resolution order as PHP. In other words:  
@@ -1108,16 +1108,16 @@ without the namespace:
 
 ```php
 namespace Foo\Component;
- 
+
 class Bar
 {
-    /**
+    /**
      * Assumes Foo\Component\Baz:
      * @param Baz $baz
      */
-    public function doSomething(Baz $baz)
-    {
-    }
+    public function doSomething(Baz $baz)
+    {
+    }
 }
 ```
 
@@ -1126,16 +1126,16 @@ relative to the current namespace:
 
 ```php
 namespace Foo\Component;
- 
+
 class Bar
 {
-    /**
+    /**
      * Assumes Foo\Component\Adapter\Baz:
      * @param Adapter\Baz $baz
      */
-    public function doSomething(Adapter\Baz $baz)
-    {
-    }
+    public function doSomething(Adapter\Baz $baz)
+    {
+    }
 }
 ```
 
@@ -1144,20 +1144,20 @@ the name as specified by the import:
 
 ```php
 namespace Foo\Component;
- 
+
 use Zend\EventManager\EventManager as Events,
-    Zend\Log;
- 
+    Zend\Log;
+
 class Bar
 {
-    /**
+    /**
      * Assumes Zend\EventManager\EventManager and Zend\Log\Logger:
      * @param Events $events
      * @param Log\Logger $log
      */
-    public function doSomething(Events $events, Log\Logger $log)
-    {
-    }
+    public function doSomething(Events $events, Log\Logger $log)
+    {
+    }
 }
 ```
 
@@ -1166,16 +1166,16 @@ a globally resolvable name:
 
 ```php
 namespace Foo\Component;
- 
+
 class Bar
 {
-    /**
+    /**
      * Assumes \Zend\EventManager\EventManager:
      * @param \Zend\EventManager\EventManager $events
      */
-    public function doSomething(\Zend\EventManager\EventManager $events)
-    {
-    }
+    public function doSomething(\Zend\EventManager\EventManager $events)
+    {
+    }
 }
 ```
 
@@ -1184,7 +1184,7 @@ importing any dependencies. One case where it may happen, however, is in
 ```@return``` annotations, as return types might be determined outside the 
 class scope.  
 
-#### Files
+### Files
 
 Every file that contains PHP code **MUST** have a docblock at the top of the 
 file that contains these phpDocumentor tags at a minimum:  
@@ -1199,7 +1199,7 @@ file that contains these phpDocumentor tags at a minimum:
  */
 ```
 
-#### Classes
+### Classes
 
 Every class **MUST** have a docblock that contains these phpDocumentor tags at 
 a minimum:  
@@ -1212,7 +1212,7 @@ a minimum:
  */
 ```
 
-#### Functions
+### Functions
 
 Every function, including object methods, **MUST** have a docblock that 
 contains at a minimum:  
